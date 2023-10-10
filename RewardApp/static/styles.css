@@ -1,0 +1,228 @@
+* {
+    margin:0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: Tahoma, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    margin: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #eaf8ff;
+    background-size: 100%;
+}
+
+/*style logo top right corner*/
+.logo{
+    font-family: Tahoma, Verdana, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    /*background-color: #6eacc9;*/
+    background-color: rgb(114, 195, 226);
+    color: white;
+}
+
+/*style nav bar itself*/
+.navbar ul {
+    display:flex;
+    list-style: none;
+    justify-content: flex-end;
+    /*background-color: #6eacc9;*/
+    padding-bottom: 10px;
+    background-color: rgb(114, 195, 226);
+    color: white;
+}
+
+/*style nav bar items*/
+.navbar ul li a {
+    display: block;
+    font-size: 20px;
+    padding: 10px 25px;
+    border-radius: 50px;
+    transition: 0.2s;
+    margin: 0 5px;
+    float:right;
+    color: black;
+    font-family: 'Cherry Bomb One', cursive;
+    font-size: 20px;
+
+}
+
+.navbar ul li a:hover{
+    color: white;
+    /*background: rgb(245, 233, 73);*/
+    background-color: orange;
+}
+
+.navbar ul li a.active{
+    color: white;
+    background: orange;
+}
+
+/*create box in centre with text - signupcreated*/
+.central_items{
+    width: 60%;
+    margin: auto;
+    margin-top: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: center;
+    border: 3px solid white;
+    font-size: 18px;
+    background: rgba(10, 221, 38, 0.3);
+}
+
+/*create balloon filled box - index*/
+.balloon_box{
+    width: 70%;
+    margin: auto;
+    margin-top: 2%;
+    background-image: url(https://media.altphotos.com/cache/images/2017/08/04/09/752/colors-balloons-sky.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    height:200px;
+    align-items: center;
+    text-align: center;
+    border: 3px solid white;
+
+
+}
+
+/*style logo*/
+.logo{
+    font-family: 'Cherry Bomb One', cursive;
+    font-weight: lighter;
+    text-align: end;
+    padding-right: 20px;
+    color: black;
+    -webkit-text-stroke: 1px white; /* Outline color and width */
+
+}
+
+/*style title*/
+#page_title{
+    font-family: 'Cherry Bomb One', cursive;
+    font-weight: lighter;
+    font-size: 110px;
+    color: black;
+    -webkit-text-stroke: 2px white; /* Outline color and width */
+}
+
+/*style main page copy - index*/
+.title_copy{
+    width: 70%;
+    margin: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: center;
+    border: 3px solid white;
+    font-size: 18px;
+
+}
+
+/*style buttons*/
+.Button{
+    float:center;
+    padding: 10px;
+    color:black;
+    text-decoration:none;
+    font-size: 15px;
+    background-color: white;
+
+    text-align: center;
+    color:black;
+    font-weight: bold;
+    overflow: auto;
+    list-style: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+    border: 1px solid;
+    border-radius: 25px;
+}
+
+.Button:hover{
+    background-color: #4F9FC2;
+    transition: 0.7s;
+}
+
+.footer{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+}
+
+/*titles on pages - child, display tasks*/
+.central_titles{
+    font-family: 'Cherry Bomb One', cursive;
+    font-weight: lighter;
+}
+
+/*sign up form styling*/
+#form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+#form-signin .form-signin-heading,
+#form-signin .checkbox {
+    margin-bottom: 10px;
+}
+#form-signin .checkbox {
+    font-weight: normal;
+}
+#form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+#form-signin .form-control:focus {
+    z-index: 2;
+}
+#form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+#form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/*homepage styling*/
+/* Create two equal columns that float next to each other */
+.homepagecolumn {
+    float: left;
+    width: 50%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+  /* Clear floats after the columns */
+.homepagerow:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*create central area for charts*/
+.charts_styling{
+    width: 100%;
+    margin: auto;
+    margin-top: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: center;
+}

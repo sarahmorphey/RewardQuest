@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<link rel="stylesheet" href="../static/styles.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
+
+		<title>RewardQuest Task Completed</title>
+	</head>
+
+    <body>
+
+        <header>
+
+            <nav>
+                <div class="logo">RewardQuest</div>
+                <div class="hamburger">
+                <div class ="line"></div>
+                <div class ="line"></div>
+                <div class ="line"></div>
+                </div>
+
+                <nav class="navbar">
+
+            <ul>
+                        <li><a href="/homepage" class="nav-link">Home</a></li>
+                        <li><a href="/child" class="nav-link" >Child</a></li>
+                        <li><a href="/tasks" class="nav-link active" aria-current="page">Tasks</a></li>
+                        <li><a href="/rewards" class="nav-link">Rewards</a></li>
+                        <li><a href="/chart" class="nav-link">Charts</a></li>
+                        <li><a href="/logout" class="nav-link">Logout</a></li>
+            </ul>
+                    </nav>
+            </nav>
+
+        </header>
+
+        <div class="central_items">
+
+            <br>
+					<h1 class="central_titles">Mark a Task as Complete</h1>
+                    <br>
+
+					<form id="form-createtaskcompl" action="/api/createtaskcompl" method="POST">
+
+						<label for="inputTaskID" class="sr-only">Task</label>
+							<select id="inputTaskID" name="inputTaskID"
+								class="form-control"
+								placeholder="TaskID" >
+        						{% for opt in myTasks %}
+            						<option value={{ opt[0] }}
+               						{% if myValue==opt %}
+                   							selected="true"
+               						{% endif %}>{{ opt[1] }}
+            						</option>
+        							{% endfor %}
+ 							</select><br>
+						<label for="inputChildID" class="sr-only">Child</label>
+							<select id="inputChildID" name="inputChildID"
+								class="form-control"
+								placeholder="ChildID" >
+								{% for kid in myKids %}
+									<option value={{ kid[0] }}
+									{% if myKidValue==kid %}
+											selected="true"
+									{% endif %}>{{ kid[1] }}
+									</option>
+									{% endfor %}
+							</select>
+
+                        <br>
+                        <br>
+
+						                  <button
+							class="Button"
+							type="submit"
+						>
+							Mark Task as Complete
+						</button>
+                        <br>
+
+					</form>
+                    <br>
+
+
+			</div>
+
+
+			<footer class="footer">
+				<p>&copy; CFG Software2 - G7 2023</p>
+			</footer>
+
+		</div>
+		<script>
+			document
+				.querySelector("#form-createtaskcompl")
+				.addEventListener("submit", async function (e) {
+					e.preventDefault();
+					console.log(new URLSearchParams(new FormData(e.target)).toString());
+					const res = await fetch("/api/createtaskcompl", {
+						body: new URLSearchParams(new FormData(e.target)).toString(),
+						method: "POST",
+						headers: {
+							"Content-Type": "application/x-www-form-urlencoded",
+						},
+					});
+				.then(response => {
+            if (response.status != 201) {
+                response.json().then(data => {
+                    fetch("/something-went-wrong", {
+                        method: "POST",
+                        body: JSON.stringify({"message": data["message"]}),
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRFToken": csrf_token,
+                        },
+                    })
+                    .then(response => response.text())
+                    .then(text => {
+                        window.document.body.innerHTML = text;
+                    })
+                });
+            }
+            else {
+                return response.blob().then(blob => {
+                    const file = new Blob([blob], { type: 'text/csv' });
+                    const fileURL = URL.createObjectURL(file);
+                    let fileLink = document.createElement('a');
+                    fileLink.href = fileURL;
+                    fileLink.download = "result.csv";
+                    fileLink.click();
+                    window.document.body.innerHTML = "<h1>Task Completed</h1>";
+                });
+            }
+        })
+        return false;.
+    }
+		</script>
+	</body>
+</html>

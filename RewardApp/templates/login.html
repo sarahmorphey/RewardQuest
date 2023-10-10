@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+	    <link rel="stylesheet" href="../static/styles.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
+
+		<title>RewardQuest Log In </title>
+	</head>
+
+    <body>
+
+    <header>
+
+        <nav>
+            <div class="logo">RewardQuest</div>
+            <div class="hamburger">
+            <div class ="line"></div>
+            <div class ="line"></div>
+            <div class ="line"></div>
+            </div>
+
+	        <nav class="navbar">
+
+            <ul>
+                        <li><a href="/homepage" class="nav-link">Home</a></li>
+                        <li><a href="/child" class="nav-link" >Child</a></li>
+                        <li><a href="/tasks" class="nav-link">Tasks</a></li>
+                        <li><a href="/rewards" class="nav-link">Rewards</a></li>
+                        <li><a href="/chart" class="nav-link">Charts</a></li>
+                        <li><a href="/logout" class="nav-link">Logout</a></li>
+            </ul>
+	        </nav>
+
+        </nav>
+
+
+
+    <div>
+        <div class="central_items">
+            <h1 class = "central_titles">Log In to RewardQuest </h1>
+            <br>
+
+            <form class='form' id="form-login" action="/login" method="POST">
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus/>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required/>
+                <br><br>
+                <button class="Button" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; CFG Software2 - G7 2023</p>
+    </footer>
+</div>
+<script>
+    document.querySelector("#form-login").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const res = await fetch("/login", {
+            body: new URLSearchParams(formData).toString(),
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        });
+        if (res.ok) {
+            const data = await res.json();
+            if (data.token) {
+                sessionStorage.setItem("token", data.token);
+                window.location.href = "/protected";  // Redirect to protected route
+            } else {
+                console.log("Invalid credentials");
+            }
+        } else {
+            console.log("Error");
+        }
+    });
+</script>
+</body>
+</html>
